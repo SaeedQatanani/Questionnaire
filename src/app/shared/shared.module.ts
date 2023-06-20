@@ -6,6 +6,7 @@ import { ToolbarModule } from "primeng/toolbar";
 import { CardModule } from 'primeng/card';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { ToastModule } from 'primeng/toast';
         TableModule,
         CardModule,
         SplitButtonModule,
-        ToastModule
+        ToastModule,
+        InputTextModule
     ],
     exports: [
         ButtonModule,
@@ -24,7 +26,8 @@ import { ToastModule } from 'primeng/toast';
         TableModule,
         CardModule,
         SplitButtonModule,
-        ToastModule
+        ToastModule,
+        InputTextModule
     ]
 })
 export class SharedModule {

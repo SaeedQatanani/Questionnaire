@@ -30,19 +30,44 @@ export class QuestionService {
   }
 
   addQuestion(question: Question) {
-    this.questions.push(question);
-    this.questionsChanged.next(this.questions.slice());
+    this.dataService.addQuestion(question).subscribe({
+      next: (data) => {
+        this.status = 'Added successfully';
+        this.getQuestionsFromBE();
+        this.questionsChanged.next(this.questions.slice());
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+        console.log(this.errorMessage);
+        console.error('There was an error!', error);
+      },
+    });
   }
 
   updateQuestion(index: number, newQuestion: Question) {
-    this.questions[index] = newQuestion;
-    this.questionsChanged.next(this.questions.slice());
+    this.dataService
+      .updateQuestion({
+        id: index,
+        question: newQuestion.question,
+        answers: newQuestion.answers,
+      })
+      .subscribe({
+        next: (data) => {
+          this.status = 'Updated successfully';
+          this.getQuestionsFromBE();
+          this.questionsChanged.next(this.questions.slice());
+        },
+        error: (error) => {
+          this.errorMessage = error.message;
+          console.log(this.errorMessage);
+          console.error('There was an error!', error);
+        },
+      });
   }
 
   deleteQuestion(index: number) {
     this.dataService.deleteQuestion(index).subscribe({
       next: (data) => {
-        // console.log(data);
         this.status = 'Delete successful';
         this.getQuestionsFromBE();
         this.questionsChanged.next(this.questions.slice());

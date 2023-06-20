@@ -30,7 +30,16 @@ export class DataStorageService {
     return this.http.get<Answer[]>(this.baseUrl + '/' + id + '/answers');
   }
 
-  deleteQuestion(id :number): Observable<any> {
+  addQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(this.baseUrl, question);
+  }
+
+  updateQuestion(question: Question): Observable<Question> {
+    console.log(question);
+    return this.http.put<Question>(this.baseUrl, question);
+  }
+
+  deleteQuestion(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 }

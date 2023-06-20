@@ -1,14 +1,25 @@
 <div class="card">
+  <div class="card">
+    <p-button
+      label="New"
+      type="button"
+      styleClass="p-button-success"
+      (onClick)="onNew()"
+    ></p-button>
+  </div>
   <p-table [value]="questions" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
-        <th>Question</th>
+        <th>Questions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-question>
       <tr>
         <td>
-          <app-question-item [question]="question" [index]="question.id"></app-question-item>
+          <app-question-item
+            [question]="question"
+            [index]="question.id"
+          ></app-question-item>
         </td>
       </tr>
     </ng-template>

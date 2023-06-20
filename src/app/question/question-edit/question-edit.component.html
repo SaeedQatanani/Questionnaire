@@ -1,1 +1,36 @@
-<p>question-edit works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="question">Question Context</label>
+            <input
+              type="text"
+              id="question"
+              pInputText
+              formControlName="question"
+              class="from-control"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p-button
+            label="Save"
+            type="submit"
+            styleClass="p-button-outlined p-button-success"
+            [disabled]="!questionForm.valid"
+          ></p-button>
+          <p-button
+            label="Cancel"
+            type="button"
+            styleClass="p-button-outlined p-button-warning"
+            (onClick)="onCancel()"
+          ></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
