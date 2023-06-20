@@ -1,0 +1,18 @@
+<div class="card">
+  <p-toolbar>
+    <div class="p-toolbar-group-start">
+      <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+          <img
+            src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+            height="30"
+            class="mr-2"
+          />
+        </ng-template>
+      </p-menubar>
+    </div>
+    <div class="p-toolbar-group-end">
+      <p-button icon="pi pi-fw pi-power-off" styleClass="p-button-danger" label="Logout"></p-button>
+    </div>
+  </p-toolbar>
+</div>

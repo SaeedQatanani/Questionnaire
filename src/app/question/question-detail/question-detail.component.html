@@ -1,0 +1,27 @@
+<p-card>
+  <h4>{{ question?.question }}</h4>
+  <div class="card">
+    <p-table [value]="question?.answers" [tableStyle]="{ 'min-width': '40rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Answers</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-answer>
+        <tr>
+          <td>
+            {{ answer?.answer }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="card flex justify-content-center">
+    <!-- <p-toast></p-toast> -->
+    <p-splitButton
+      label="Options"
+      icon="pi pi-plus"
+      [model]="items"
+    ></p-splitButton>
+  </div>
+</p-card>
