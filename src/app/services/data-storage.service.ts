@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Question } from '../shared/question';
-import { Answer } from '../shared/answer';
+import { Question } from '../models/question.model';
+import { Answer } from '../models/answer.model';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
@@ -41,5 +41,9 @@ export class DataStorageService {
 
   deleteQuestion(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
+  }
+
+  addAnswer(id: number, answer: Answer): Observable<Answer> {
+    return this.http.post<Answer>(this.baseUrl + '/' + id + '/answers', answer);
   }
 }

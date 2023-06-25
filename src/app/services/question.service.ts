@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Question } from '../shared/question';
+import { Question } from '../models/question.model';
 import { DataStorageService } from './data-storage.service';
 
 @Injectable({
@@ -69,6 +69,21 @@ export class QuestionService {
     this.dataService.deleteQuestion(index).subscribe({
       next: (data) => {
         this.status = 'Delete successful';
+        this.getQuestionsFromBE();
+        this.questionsChanged.next(this.questions.slice());
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+        console.log(this.errorMessage);
+        console.error('There was an error!', error);
+      },
+    });
+  }
+
+  addAnswer(id: number, value: any) {
+    this.dataService.addAnswer(id, value).subscribe({
+      next: (data) => {
+        this.status = 'Added successfully';
         this.getQuestionsFromBE();
         this.questionsChanged.next(this.questions.slice());
       },

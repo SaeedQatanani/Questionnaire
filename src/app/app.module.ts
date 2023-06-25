@@ -4,24 +4,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
-import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AboutComponent } from './about/about.component';
+import { CoreModule } from './core.module';
+import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthComponent,
     AboutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    CoreModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

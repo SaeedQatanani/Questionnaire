@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { QuestionService } from 'src/app/services/question.service';
-import { Question } from 'src/app/shared/question';
+import { Question } from 'src/app/models/question.model';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-question-detail',
@@ -17,7 +18,8 @@ export class QuestionDetailComponent implements OnInit {
   constructor(
     private questionService: QuestionService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private session: SessionService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,8 @@ export class QuestionDetailComponent implements OnInit {
   }
   
   setItems() {
+    const roles: string[] = this.session.getUser().roles;
+    roles.includes("ADMIN") ?
     this.items = [
       {
         label: 'Update',
@@ -47,7 +51,16 @@ export class QuestionDetailComponent implements OnInit {
           this.delete();
         },
       },
-    ];
+    ] :
+    this.items = [
+      {
+        label: 'Add answer',
+        icon: 'pi pi-plus',
+        command: () => {
+          this.add();
+        },
+      }
+    ]
   }
 
   update() {
@@ -57,5 +70,9 @@ export class QuestionDetailComponent implements OnInit {
   delete() {
     this.questionService.deleteQuestion(this.id);
     this.router.navigate(['/questions']);
+  }
+
+  add() {
+    this.router.navigate(['answers'], { relativeTo: this.route });
   }
 }

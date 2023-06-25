@@ -1,1 +1,62 @@
-<p>auth works!</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <div class="from-group">
+        <label for="username">Username</label>
+        <input
+          type="username"
+          name="username"
+          class="form-control"
+          ngModel
+          required
+          minlength="4"
+        />
+      </div>
+      <div class="from-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          ngModel
+          required
+          minlength="6"
+        />
+      </div>
+      <div style="margin-top: 2%">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!authForm.valid"
+        >
+          {{ isLoginMode ? "Login" : "Sign Up" }}
+        </button>
+        |
+        <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+          Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+        </button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="authForm.submitted && !isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+
+      <div class="form-group">
+        <div
+          *ngIf="authForm.submitted && isLoginFailed"
+          class="alert alert-danger"
+          role="alert"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+  </div>
+</div>

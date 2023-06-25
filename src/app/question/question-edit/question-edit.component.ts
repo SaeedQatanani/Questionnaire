@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
-import { Answer } from 'src/app/shared/answer';
+import { Answer } from 'src/app/models/answer.model';
 
 @Component({
   selector: 'app-question-edit',

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
-import { Question } from 'src/app/shared/question';
+import { Question } from 'src/app/models/question.model';
 
 @Component({
   selector: 'app-question-list',

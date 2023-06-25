@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="answerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="answer">Answer Context</label>
+              <input
+                type="text"
+                id="answer"
+                pInputText
+                formControlName="answer"
+                class="from-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p-button
+              label="Save"
+              type="submit"
+              styleClass="p-button-outlined p-button-success"
+              [disabled]="!answerForm.valid"
+            ></p-button>
+            <p-button
+              label="Cancel"
+              type="button"
+              styleClass="p-button-outlined p-button-warning"
+              (onClick)="onCancel()"
+            ></p-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

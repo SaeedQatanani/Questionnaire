@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionsRoutingModule } from "./questions-routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { QuestionItemComponent } from './question-list/question-item/question-item.component';
+import { AnswerEditComponent } from "./question-detail/answer-edit/answer-edit.component";
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { QuestionItemComponent } from './question-list/question-item/question-it
         QuestionDetailComponent,
         QuestionStartComponent,
         QuestionEditComponent,
-        QuestionItemComponent
+        QuestionItemComponent,
+        AnswerEditComponent
     ],
     imports: [
         RouterModule,
