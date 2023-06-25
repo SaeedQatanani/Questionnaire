@@ -37,7 +37,7 @@
         </button>
       </div>
 
-      <div class="alert alert-warning" *ngIf="authForm.submitted && !isSignUpFailed">
+      <div class="alert alert-warning" *ngIf="authForm.submitted && isSignUpFailed">
         Signup failed!<br />{{ errorMessage }}
       </div>
 
@@ -47,13 +47,13 @@
           class="alert alert-danger"
           role="alert"
         >
-          Login failed: {{ errorMessage }}
+          Login failed: {{ errorMessage }}, check your inputs
         </div>
       </div>
     </form>
 
     <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
+      Your registration is successful!, Switch to login
     </div>
     <div class="alert alert-success" *ngIf="isLoggedIn">
       Logged in as {{ roles }}.

@@ -11,8 +11,6 @@ import { SessionService } from '../services/session.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode = true;
-  //isLoading = false;
-  //error:string = null;
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -50,11 +48,9 @@ export class AuthComponent implements OnInit {
         next: () => {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
-          this.router.navigate(['/about']);
+          this.router.navigate(['/auth']);
         },
         error: (error) => {
-          console.log("from auth com ");
-          console.log(error);
           this.errorMessage = error.error.message;
           this.isSignUpFailed = true;
         },
@@ -66,7 +62,6 @@ export class AuthComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.session.getUser().roles;
-          // this.reloadPage();
           this.router.navigate(['/profile']);
         },
         error: error => {

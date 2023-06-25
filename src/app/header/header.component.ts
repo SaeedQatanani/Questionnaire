@@ -11,30 +11,37 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   items: MenuItem[] | undefined;
+  showButton = true;
 
-  constructor(private session: SessionService,
+  constructor(
+    private session: SessionService,
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.showButton = this.session.isLoggedIn();
+    this.session.getUserObservable().subscribe(user => {
+      this.showButton = !!user;
+    })
     this.items = [
       { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
       { label: 'Questions', icon: 'pi pi-question', routerLink: '/questions' },
       { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },
-      { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' }
+      { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' },
     ];
   }
 
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        console.log("Logged out");
+        console.log('Logged out');
         this.session.clean();
         this.router.navigate(['/auth']);
       },
-      error: error => {
+      error: (error) => {
         console.log(error.error);
-      }
-    })
+      },
+    });
   }
 }

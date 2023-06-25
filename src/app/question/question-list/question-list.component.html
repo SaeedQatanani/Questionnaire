@@ -5,6 +5,7 @@
       type="button"
       styleClass="p-button-success"
       (onClick)="onNew()"
+      *ngIf="showNew"
     ></p-button>
   </div>
   <p-table [value]="questions" [tableStyle]="{ 'min-width': '50rem' }">

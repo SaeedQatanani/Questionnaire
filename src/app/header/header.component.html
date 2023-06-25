@@ -11,7 +11,7 @@
         </ng-template>
       </p-menubar>
     </div>
-    <div class="p-toolbar-group-end">
+    <div class="p-toolbar-group-end" *ngIf="showButton">
       <p-button icon="pi pi-fw pi-power-off" styleClass="p-button-danger" label="Logout" (onClick)="logout()"></p-button>
     </div>
   </p-toolbar>
