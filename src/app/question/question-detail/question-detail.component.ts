@@ -25,51 +25,54 @@ export class QuestionDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.questionService
-        .getQuestionFromBE(this.id)
-        .subscribe((data) => (this.question = data));
+      this.questionService.getQuestionFromBE(this.id).subscribe((data) => {
+        this.question = data;
+        console.log(this.question);
+      });
     });
     this.setItems();
   }
-  
+
   setItems() {
     const roles: string[] = this.session.getUser().roles;
-    roles.includes("ADMIN") ?
-    this.items = [
-      {
-        label: 'Update',
-        icon: 'pi pi-refresh',
-        command: () => {
-          this.update();
-        },
-      },
-      { separator: true },
-      {
-        label: 'Delete',
-        icon: 'pi pi-times',
-        command: () => {
-          this.delete();
-        },
-      },
-    ] :
-    this.items = [
-      {
-        label: 'Add answer',
-        icon: 'pi pi-plus',
-        command: () => {
-          this.add();
-        },
-      }
-    ]
+    roles.includes('ADMIN')
+      ? (this.items = [
+          {
+            label: 'Update',
+            icon: 'pi pi-refresh',
+            command: () => {
+              this.update();
+            },
+          },
+          { separator: true },
+          {
+            label: 'Delete',
+            icon: 'pi pi-times',
+            command: () => {
+              this.delete();
+            },
+          },
+        ])
+      : (this.items = [
+          {
+            label: 'Add answer',
+            icon: 'pi pi-plus',
+            command: () => {
+              this.add();
+            },
+          },
+        ]);
   }
 
   update() {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
-  
+
   delete() {
-    this.questionService.deleteQuestion(this.id);
-    this.router.navigate(['/questions']);
+    if (window.confirm('Are you sure you want to delete?')) {
+      this.questionService.deleteQuestion(this.id);
+      this.router.navigate(['/questions']);
+    }
   }
 
   add() {
