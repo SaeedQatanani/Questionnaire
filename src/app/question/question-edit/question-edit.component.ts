@@ -28,7 +28,6 @@ export class QuestionEditComponent implements OnInit {
       this.editMode = params['id'] != null;
       if (this.editMode) {
         this.questionService.getQuestionFromBE(this.id).subscribe((data) => {
-          console.log(data);
           this.questionText = data.question;
           this.questionAnswers = data.answers;
           this.initForm();

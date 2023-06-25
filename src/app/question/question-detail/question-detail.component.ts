@@ -27,7 +27,6 @@ export class QuestionDetailComponent implements OnInit {
       this.id = +params['id'];
       this.questionService.getQuestionFromBE(this.id).subscribe((data) => {
         this.question = data;
-        console.log(this.question);
       });
     });
     this.setItems();
