@@ -80,8 +80,9 @@ export class QuestionService {
     });
   }
 
-  addAnswer(id: number, value: any) {
-    this.dataService.addAnswer(id, value).subscribe({
+  addAnswer(id: number, value: any, user: any) {
+    console.log(value);
+    this.dataService.addAnswer(id, value, user).subscribe({
       next: (data) => {
         this.status = 'Added successfully';
         this.getQuestionsFromBE();

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-answer-edit',
@@ -17,7 +18,8 @@ export class AnswerEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
-    private router: Router
+    private router: Router,
+    private session: SessionService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class AnswerEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.questionService.addAnswer(this.id, this.answerForm.value);
+    this.questionService.addAnswer(this.id, this.answerForm.value, this.session.getUser());
     this.onCancel();
   }
 

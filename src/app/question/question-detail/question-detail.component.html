@@ -10,7 +10,7 @@
       <ng-template pTemplate="body" let-answer>
         <tr>
           <td>
-            {{ answer?.answer }}
+            {{ answer?.answer }} <span *ngIf="isAdmin">, by: <strong>{{answer?.user.userName}}</strong></span>
           </td>
         </tr>
       </ng-template>

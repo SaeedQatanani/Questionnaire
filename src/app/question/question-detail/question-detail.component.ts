@@ -14,6 +14,7 @@ export class QuestionDetailComponent implements OnInit {
   question!: Question;
   id: number;
   items: MenuItem[];
+  isAdmin: boolean;
 
   constructor(
     private questionService: QuestionService,
@@ -26,7 +27,9 @@ export class QuestionDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.questionService.getQuestionFromBE(this.id).subscribe((data) => {
+        console.log(data);
         this.question = data;
+        this.isAdmin = this.session.isAdmin();
       });
     });
     this.setItems();

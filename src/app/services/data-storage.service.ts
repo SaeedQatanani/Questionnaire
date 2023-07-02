@@ -26,9 +26,9 @@ export class DataStorageService {
     return this.http.get<Question>(this.baseUrl + '/' + id);
   }
 
-  getQuestionAnswers(id: number): Observable<Answer[]> {
-    return this.http.get<Answer[]>(this.baseUrl + '/' + id + '/answers');
-  }
+  // getQuestionAnswers(id: number): Observable<Answer[]> {
+  //   return this.http.get<Answer[]>(this.baseUrl + '/' + id + '/answers');
+  // }
 
   addQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.baseUrl, question);
@@ -43,7 +43,9 @@ export class DataStorageService {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 
-  addAnswer(id: number, answer: Answer): Observable<Answer> {
+  addAnswer(id: number, answer: Answer, user: any): Observable<Answer> {
+    answer.user = user;
+    console.log(answer);
     return this.http.post<Answer>(this.baseUrl + '/' + id + '/answers', answer);
   }
 }
