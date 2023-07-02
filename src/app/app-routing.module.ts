@@ -21,6 +21,7 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard],
   },
+  { path: '**', redirectTo: '/questions', pathMatch: 'full' },
 ];
 
 @NgModule({
