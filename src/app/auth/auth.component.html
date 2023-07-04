@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-md-6 col-md-offset-3">
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
       <div class="from-group">
-        <label for="username">Username</label>
+        <label for="username">{{ 'Username' | translate }}</label>
         <input
           type="username"
           name="username"
@@ -13,7 +13,7 @@
         />
       </div>
       <div class="from-group">
-        <label for="password">Password</label>
+        <label for="password">{{ 'Password' | translate }}</label>
         <input
           type="password"
           name="password"
@@ -29,11 +29,11 @@
           type="submit"
           [disabled]="!authForm.valid"
         >
-          {{ isLoginMode ? "Login" : "Sign Up" }}
+          {{ (isLoginMode ? "Login" : "Sign Up") | translate }}
         </button>
         |
         <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
-          Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+          {{"Switch to" | translate }} {{ (isLoginMode ? "Sign Up" : "Login") | translate }}
         </button>
       </div>
 

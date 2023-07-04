@@ -1,5 +1,19 @@
 {
-  "This is a website where you can add questionnaires or answer ones.": "المكان المناسب لاضافة استبيانك او المشاركة فيها",
+  "About": "المكان المناسب لاضافة استبيانك او المشاركة فيها",
   "Current date": "التاريخ:",
-  "Switch Language": "تحويل اللغة"
+  "Arabic": "English",
+  "Logout": "تسجيل خروج",
+  "Profile": "حسابك",
+  "You have role of:": " : لديك صلاحية",
+  "Username": "اسم المستخدم",
+  "Password": "كلمة المرور",
+  "Login": "تسجيل دخول",
+  "Switch to": "تحويل الى",
+  "Sign Up": "انشاء حساب",
+  "Detail": "الرجاء اختيار سؤال للاطلاع على تفاصيله",
+  "New Question": "اضافة سؤال",
+  "Questions": "الاسئلة",
+  "Answers": "الاجابات",
+  "Options": "خيارات",
+  "Update": "تعديل"
 }

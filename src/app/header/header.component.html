@@ -11,8 +11,20 @@
         </ng-template>
       </p-menubar>
     </div>
+    <div class="p-toolbar-group-middle">
+      <p-button (onClick)="switchLocale()">{{
+        "Arabic" | translate
+      }}</p-button>
+    </div>
     <div class="p-toolbar-group-end" *ngIf="showButton">
-      <p-button icon="pi pi-fw pi-power-off" styleClass="p-button-danger" label="Logout" (onClick)="logout()"></p-button>
+      <p-button
+        icon="pi pi-fw pi-power-off"
+        styleClass="p-button-danger"
+        (onClick)="logout()"
+        label="
+          {{ 'Logout' | translate }}
+        "
+      ></p-button>
     </div>
   </p-toolbar>
 </div>

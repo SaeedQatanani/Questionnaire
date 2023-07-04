@@ -10,6 +10,7 @@ import { QuestionsRoutingModule } from "./questions-routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { QuestionItemComponent } from './question-list/question-item/question-item.component';
 import { AnswerEditComponent } from "./question-detail/answer-edit/answer-edit.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { AnswerEditComponent } from "./question-detail/answer-edit/answer-edit.c
         RouterModule,
         ReactiveFormsModule,
         QuestionsRoutingModule,
-        SharedModule
+        SharedModule,
+        TranslateModule
     ]
 })
 export class QuestionsModule {

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card">
     <p-button
-      label="New Question"
+      label="{{ 'New Question' | translate }}"
       type="button"
       styleClass="p-button-success"
       (onClick)="onNew()"
@@ -11,7 +11,7 @@
   <p-table [value]="questions" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
-        <th>Questions</th>
+        <th>{{ "Questions" | translate }}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-question>

@@ -1,5 +1,19 @@
 {
-  "This is a website where you can add questionnaires or answer ones.": "This is a website where you can add questionnaires or answer ones.",
+  "About": "This is a website where you can add questionnaires or answer ones.",
   "Current date": "Current date:",
-  "Switch Language": "Switch Language"
+  "Arabic": "العربية",
+  "Logout": "Logout",
+  "Profile": "this is your profile",
+  "You have role of:": "You have role of : ",
+  "Username": "Username",
+  "Password": "Password",
+  "Login": "Login",
+  "Switch to": "Switch to",
+  "Sign Up": "Sign Up",
+  "Detail": "Please select a question to view its answers",
+  "New Question": "New Question",
+  "Questions": "Questions",
+  "Answers": "Answers",
+  "Options" : "Options",
+  "Update": "Update"
 }

@@ -1,14 +1,9 @@
 <div class="card" *ngIf="currentUser; else loggedout">
-    <h4>{{ currentUser.userName }}, this is your profile</h4>
-    <ul>
-        <li *ngFor="let role of currentUser.roles">
-            You have {{ role }} role
-        </li>
-    </ul>
+  <h4>{{ currentUser.userName }}, {{ "Profile" | translate }}</h4>
+  <ul>
+    <li *ngFor="let role of currentUser.roles">{{ "You have role of:" | translate }} {{ role }}</li>
+  </ul>
 </div>
 <ng-template #loggedout>
-    <div class="card">
-        Please login.
-    </div>
+  <div class="card">Please login.</div>
 </ng-template>
-

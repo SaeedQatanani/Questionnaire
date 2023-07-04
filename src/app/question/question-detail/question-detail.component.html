@@ -4,7 +4,7 @@
     <p-table [value]="question?.answers" [tableStyle]="{ 'min-width': '40rem' }">
       <ng-template pTemplate="header">
         <tr>
-          <th>Answers</th>
+          <th>{{ "Answers" | translate }}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-answer>
@@ -19,7 +19,7 @@
   <div class="card flex justify-content-center">
     <!-- <p-toast></p-toast> -->
     <p-splitButton
-      label="Option\s"
+      label="{{ 'Options' | translate }}"
       icon="pi pi-plus"
       [model]="items"
     ></p-splitButton>
