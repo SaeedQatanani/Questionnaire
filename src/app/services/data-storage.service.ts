@@ -35,7 +35,6 @@ export class DataStorageService {
   }
 
   updateQuestion(question: Question): Observable<Question> {
-    console.log(question);
     return this.http.put<Question>(this.baseUrl, question);
   }
 
