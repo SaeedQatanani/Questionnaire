@@ -15,5 +15,8 @@
   "Questions": "الاسئلة",
   "Answers": "الاجابات",
   "Options": "خيارات",
-  "Update": "تعديل"
+  "Update": "تعديل",
+  "Context": "نص السؤال",
+  "Save": "حفظ",
+  "Cancel": "الغاء"
 }

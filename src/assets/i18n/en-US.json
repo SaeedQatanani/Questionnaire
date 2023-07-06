@@ -15,5 +15,8 @@
   "Questions": "Questions",
   "Answers": "Answers",
   "Options" : "Options",
-  "Update": "Update"
+  "Update": "Update",
+  "Context": "Question Context",
+  "Save": "Save",
+  "Cancel": "Cancel"
 }
