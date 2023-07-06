@@ -24,6 +24,21 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.showButton = this.session.isLoggedIn();
+    this.session.isLoggedIn()
+      ? (this.items = [
+          { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
+          {
+            label: 'Questions',
+            icon: 'pi pi-question',
+            routerLink: '/questions',
+          },
+          { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },
+          { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' },
+        ])
+      : (this.items = [
+          { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },
+          { label: 'Log in', icon: 'pi pi-user', routerLink: '/auth' },
+        ]);
     this.session.getUserObservable().subscribe((user) => {
       this.showButton = !!user;
       user
