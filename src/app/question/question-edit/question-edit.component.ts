@@ -30,8 +30,6 @@ export class QuestionEditComponent implements OnInit {
         this.questionService.getQuestionFromBE(this.id).subscribe((data) => {
           this.questionText = data.question;
           this.questionAnswers = data.answers;
-          console.log(this.questionText + "1111");
-          console.log(this.questionAnswers);
           this.initForm();
         });
       }
