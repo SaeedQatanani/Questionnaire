@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SessionService } from '../services/session.service';
+// import { Observable, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -75,4 +76,23 @@ export class AuthComponent implements OnInit {
   reloadPage() {
     window.location.reload();
   }
+
+  // test(){
+  //   this.authService.login(username, password)..pipe(mergeMap((x)=>{
+  //       return new Observable;
+  //   })catchError((e)=>console.log(e);
+  //   ))subscribe({
+  //     next: data => {
+  //       this.session.saveUser(data);
+  //       this.isLoginFailed = false;
+  //       this.isLoggedIn = true;
+  //       this.roles = this.session.getUser().roles;
+  //       this.router.navigate(['/profile']);
+  //     },
+  //     error: error => {
+  //       this.errorMessage = error.error.message;
+  //       this.isLoginFailed = true;
+  //     }
+  //   });
+  // }
 }
