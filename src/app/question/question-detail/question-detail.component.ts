@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { QuestionService } from 'src/app/services/question.service';
 import { Question } from 'src/app/models/question.model';
 import { SessionService } from 'src/app/services/session.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-question-detail',
   templateUrl: './question-detail.component.html',
   styleUrls: ['./question-detail.component.css'],
 })
-export class QuestionDetailComponent implements OnInit {
+export class QuestionDetailComponent implements OnInit, OnDestroy {
+  unsubscriber$ = new Subject();
   question!: Question;
   id: number;
   items: MenuItem[];
@@ -24,15 +26,24 @@ export class QuestionDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.questionService.getQuestionFromBE(this.id).subscribe((data) => {
-        console.log(data);
-        this.question = data;
-        this.isAdmin = this.session.isAdmin();
+    this.route.params
+      .pipe(takeUntil(this.unsubscriber$))
+      .subscribe((params: Params) => {
+        this.id = +params['id'];
+        this.questionService
+          .getQuestionFromBE(this.id)
+          .pipe(takeUntil(this.unsubscriber$))
+          .subscribe((data) => {
+            console.log(data);
+            this.question = data;
+            this.isAdmin = this.session.isAdmin();
+          });
       });
-    });
     this.setItems();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber$.unsubscribe();
   }
 
   setItems() {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -9,7 +10,8 @@ import { SessionService } from 'src/app/services/session.service';
   templateUrl: './answer-edit.component.html',
   styleUrls: ['./answer-edit.component.css'],
 })
-export class AnswerEditComponent implements OnInit {
+export class AnswerEditComponent implements OnInit, OnDestroy {
+  unsubscriber$ = new Subject();
   id: number;
   editMode = false;
   answerForm: FormGroup;
@@ -23,10 +25,16 @@ export class AnswerEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.parent?.params.subscribe((params: any) => {
+    this.route.parent?.params
+      .pipe(takeUntil(this.unsubscriber$))
+      .subscribe((params: any) => {
         this.id = +params['id'];
         this.initForm();
       });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber$.unsubscribe();
   }
 
   initForm() {
@@ -36,7 +44,11 @@ export class AnswerEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.questionService.addAnswer(this.id, this.answerForm.value, this.session.getUser());
+    this.questionService.addAnswer(
+      this.id,
+      this.answerForm.value,
+      this.session.getUser()
+    );
     this.onCancel();
   }
 

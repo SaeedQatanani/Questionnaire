@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card" style="text-align: center;">
+  <div class="card" style="text-align: center">
     <p-button
       label="{{ 'New Question' | translate }}"
       type="button"
@@ -7,6 +7,49 @@
       (onClick)="onNew()"
       *ngIf="showNew"
     ></p-button>
+  </div>
+  <div class="card flex justify-content-center" *ngIf="showNew">
+    <p-button
+      (click)="showDialog()"
+      icon="pi pi-external-link"
+      label="New"
+    ></p-button>
+    <p-dialog
+      header="Add New Question"
+      [(visible)]="visible"
+      [style]="{ border: '2px solid black' }"
+    >
+      <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="question">{{ "Context" | translate }}: </label>
+              <input
+                type="text"
+                name="question"
+                id="question"
+                pInputText
+                formControlName="question"
+                class="from-control"
+              />
+              <p-button
+                label="{{ 'Save' | translate }}"
+                type="submit"
+                styleClass="p-button-outlined p-button-success"
+                [disabled]="!questionForm.valid"
+              ></p-button>
+              |
+              <p-button
+                label="{{ 'Cancel' | translate }}"
+                type="button"
+                styleClass="p-button-outlined p-button-warning"
+                (onClick)="onCancel()"
+              ></p-button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </p-dialog>
   </div>
   <p-table [value]="questions" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">

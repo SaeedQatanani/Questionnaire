@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SessionService } from '../services/session.service';
+import { Subject, takeUntil } from 'rxjs';
 // import { Observable, catchError } from 'rxjs';
 
 @Component({
@@ -10,7 +11,8 @@ import { SessionService } from '../services/session.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
+  unsubscriber$ = new Subject();
   isLoginMode = true;
   isSuccessful = false;
   isSignUpFailed = false;
@@ -32,6 +34,10 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.unsubscriber$.unsubscribe();
+  }
+
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
@@ -45,31 +51,37 @@ export class AuthComponent implements OnInit {
 
     if (!this.isLoginMode) {
       console.log(username + password);
-      this.authService.register(username, password).subscribe({
-        next: () => {
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-          this.router.navigate(['/auth']);
-        },
-        error: (error) => {
-          this.errorMessage = error.error.message;
-          this.isSignUpFailed = true;
-        },
-      });
+      this.authService
+        .register(username, password)
+        .pipe(takeUntil(this.unsubscriber$))
+        .subscribe({
+          next: () => {
+            this.isSuccessful = true;
+            this.isSignUpFailed = false;
+            this.router.navigate(['/auth']);
+          },
+          error: (error) => {
+            this.errorMessage = error.error.message;
+            this.isSignUpFailed = true;
+          },
+        });
     } else {
-      this.authService.login(username, password).subscribe({
-        next: data => {
-          this.session.saveUser(data);
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
-          this.roles = this.session.getUser().roles;
-          this.router.navigate(['/profile']);
-        },
-        error: error => {
-          this.errorMessage = error.error.message;
-          this.isLoginFailed = true;
-        }
-      });
+      this.authService
+        .login(username, password)
+        .pipe(takeUntil(this.unsubscriber$))
+        .subscribe({
+          next: (data) => {
+            this.session.saveUser(data);
+            this.isLoginFailed = false;
+            this.isLoggedIn = true;
+            this.roles = this.session.getUser().roles;
+            this.router.navigate(['/profile']);
+          },
+          error: (error) => {
+            this.errorMessage = error.error.message;
+            this.isLoginFailed = true;
+          },
+        });
     }
   }
 

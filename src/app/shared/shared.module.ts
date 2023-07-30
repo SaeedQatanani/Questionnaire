@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from "@angular/common";
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CommonModule } from "@angular/common";
         SplitButtonModule,
         ToastModule,
         InputTextModule,
-        CommonModule
+        CommonModule,
+        DialogModule
     ],
     exports: [
         ButtonModule,
@@ -30,6 +32,7 @@ import { CommonModule } from "@angular/common";
         SplitButtonModule,
         ToastModule,
         InputTextModule,
+        DialogModule,
         CommonModule
     ]
 })
